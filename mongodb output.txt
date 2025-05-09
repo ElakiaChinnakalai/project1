@@ -1,0 +1,226 @@
+db
+test
+use admin
+switched to db admin
+use ford
+switched to db ford
+show dbs
+admin    160.00 KiB
+config    72.00 KiB
+csc        8.00 KiB
+hcl      216.00 KiB
+local     72.00 KiB
+newshop   88.00 KiB
+db.createCollection("one")
+{ ok: 1 }
+db.createCollection("two")
+{ ok: 1 }
+db.createCollection("three")
+{ ok: 1 }
+db.createCollection("four")
+{ ok: 1 }
+show collections
+four
+one
+three
+two
+db.getCollection("one").drop()
+true
+show collections
+four
+three
+two
+db.dropDatabase("csc")
+{ ok: 1, dropped: 'ford' }
+use                                                   show dbs                                                                                                                               
+switched to db show
+show dbs
+admin    160.00 KiB
+config    96.00 KiB
+csc        8.00 KiB
+hcl      216.00 KiB
+local     72.00 KiB
+newshop   88.00 KiB
+use csc
+switched to db csc
+db.dropDatabase()
+{ ok: 1, dropped: 'csc' }
+show dbs
+admin    160.00 KiB
+config    96.00 KiB
+hcl      216.00 KiB
+local     72.00 KiB
+newshop   88.00 KiB
+use hcl
+switched to db hcl
+show collections
+admin
+course
+employee
+db.collection.insertOne({Name:"Anu",age:25,details:{position:"Frontend Developer",salary:50000}})
+{
+  acknowledged: true,
+  insertedId: ObjectId('67fe9fd36949d61245ba785c')
+}
+db.collection.insertMany([{Name:"Banu",age:25,details:{position:"Backend Developer",salary:60000}},{Name:"Charu",age:25,details:{position:"database admin",salary:40000}}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('67fea0ca6949d61245ba785d'),
+    '1': ObjectId('67fea0ca6949d61245ba785e')
+  }
+}
+db.collection.find()
+{
+  _id: ObjectId('67fe9fd36949d61245ba785c'),
+  Name: 'Anu',
+  age: 25,
+  details: {
+    position: 'Frontend Developer',
+    salary: 50000
+  }
+}
+{
+  _id: ObjectId('67fea0ca6949d61245ba785d'),
+  Name: 'Banu',
+  age: 25,
+  details: {
+    position: 'Backend Developer',
+    salary: 60000
+  }
+}
+{
+  _id: ObjectId('67fea0ca6949d61245ba785e'),
+  Name: 'Charu',
+  age: 25,
+  details: {
+    position: 'database admin',
+    salary: 40000
+  }
+}
+db.collection.findOne()
+{
+  _id: ObjectId('67fe9fd36949d61245ba785c'),
+  Name: 'Anu',
+  age: 25,
+  details: {
+    position: 'Frontend Developer',
+    salary: 50000
+  }
+}
+db.collection.updateOne({Name:"Anu"},{$set:{details.salary:40000}})
+SyntaxError: Unexpected token, expected "," (1:51)
+
+[0m[31m[1m>[22m[39m[90m 1 |[39m db[33m.[39mcollection[33m.[39mupdateOne({[33mName[39m[33m:[39m[32m"Anu"[39m}[33m,[39m{$set[33m:[39m{details[33m.[39msalary[33m:[39m[35m40000[39m}})
+ [90m   |[39m                                                    [31m[1m^[22m[39m[0m
+db.collection.updateOne({Name:"Anu"},{$set:{details."salary":40000}})
+SyntaxError: Unexpected token, expected "," (1:51)
+
+[0m[31m[1m>[22m[39m[90m 1 |[39m db[33m.[39mcollection[33m.[39mupdateOne({[33mName[39m[33m:[39m[32m"Anu"[39m}[33m,[39m{$set[33m:[39m{details[33m.[39m[32m"salary"[39m[33m:[39m[35m40000[39m}})
+ [90m   |[39m                                                    [31m[1m^[22m[39m[0m
+db.collection.updateOne({Name:"Anu"},{$set:{salary:40000}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+db.collection.updateMany({},{$inc:{salary:50000}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 3,
+  modifiedCount: 3,
+  upsertedCount: 0
+}
+db.collection.remove({Name:"Anu"})
+DeprecationWarning: Collection.remove() is deprecated. Use deleteOne, deleteMany, findOneAndDelete, or bulkWrite.
+{
+  acknowledged: true,
+  deletedCount: 1
+}
+db.collection.find()
+{
+  _id: ObjectId('67fea0ca6949d61245ba785d'),
+  Name: 'Banu',
+  age: 25,
+  details: {
+    position: 'Backend Developer',
+    salary: 60000
+  },
+  salary: 50000
+}
+{
+  _id: ObjectId('67fea0ca6949d61245ba785e'),
+  Name: 'Charu',
+  age: 25,
+  details: {
+    position: 'database admin',
+    salary: 40000
+  },
+  salary: 50000
+}
+db.collectioin.deletemany({"details.salary":50000})
+TypeError: db.collectioin.deletemany is not a function
+db.collectioin.deleteMany({"details.salary":50000})
+{
+  acknowledged: true,
+  deletedCount: 0
+}
+db.collection.find()
+{
+  _id: ObjectId('67fea0ca6949d61245ba785d'),
+  Name: 'Banu',
+  age: 25,
+  details: {
+    position: 'Backend Developer',
+    salary: 60000
+  },
+  salary: 50000
+}
+{
+  _id: ObjectId('67fea0ca6949d61245ba785e'),
+  Name: 'Charu',
+  age: 25,
+  details: {
+    position: 'database admin',
+    salary: 40000
+  },
+  salary: 50000
+}
+use class
+switched to db class
+db.createCollection("course")
+{ ok: 1 }
+ 
+ 
+db.course.insertMany([{"name":"Alice","age":25,"gender":"female","tags":["mongodb","nosql"],}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('67feabb26949d61245ba785f')
+  }
+}
+db.course.insertMany([{"name":"Alice","age":25,"gender":"female","tags":["mongodb","nosql"],"comments":[{"author":"john","text":"good post","score":5},{"author":"many","text":"intersting","score":4}],"title":"introduction to MongoDB"},
+SyntaxError: Unexpected token (1:235)
+
+[0m[31m[1m>[22m[39m[90m 1 |[39m db[33m.[39mcourse[33m.[39minsertMany([{[32m"name"[39m[33m:[39m[32m"Alice"[39m[33m,[39m[32m"age"[39m[33m:[39m[35m25[39m[33m,[39m[32m"gender"[39m[33m:[39m[32m"female"[39m[33m,[39m[32m"tags"[39m[33m:[39m[[32m"mongodb"[39m[33m,[39m[32m"nosql"[39m][33m,[39m[32m"comments"[39m[33m:[39m[{[32m"author"[39m[33m:[39m[32m"john"[39m[33m,[39m[32m"text"[39m[33m:[39m[32m"good post"[39m[33m,[39m[32m"score"[39m[33m:[39m[35m5[39m}[33m,[39m{[32m"author"[39m[33m:[39m[32m"many"[39m[33m,[39m[32m"text"[39m[33m:[39m[32m"intersting"[39m[33m,[39m[32m"score"[39m[33m:[39m[35m4[39m}][33m,[39m[32m"title"[39m[33m:[39m[32m"introduction to MongoDB"[39m}[33m,[39m
+ [90m   |[39m                                                                                                                                                                                                                                            [31m[1m^[22m[39m[0m
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+db.course.insertMany([{"name":"Alice","age":25,"gender":"female","tags":["mongodb","nosql"],"comments":[{"author":"john","text":"good post","score":5},{"author":"many","text":"intersting","score":4}],"title":"introduction to MongoDB"},{"name":"bob","age":30,"gender":"male","tags":["mongodb","database"],"comments":[{"author":"Alice","text":"nice article","score":4},{"author":"eve","text":"i disagree","score":2}],"title":"getting started with nosql"}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('67feb37f6949d61245ba7860'),
+    '1': ObjectId('67feb37f6949d61245ba7861')
+  }
+}
+class

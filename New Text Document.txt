@@ -1,0 +1,267 @@
+
+db.testing.aggregate([{$lookup:{from:"HR",localField:"_id",foreignField:"customer_id",as:"customer_details"},},{$limit:1}]);
+
+db.testing.aggregate([{$lookup:{from:"HR",localField:"_id",foreignField:"customer_id",as:"customer_details"}}]);
+
+e rrec
+switched to db rrec
+show collections;
+developer
+HR
+testing
+db.developer.find();
+{
+  _id: ObjectId('6802984c1e533a3236066881'),
+  name: 'Aswath',
+  age: 21,
+  details: {
+    position: 'data analyst',
+    salary: 50000
+  }
+}
+{
+  _id: ObjectId('680298841e533a3236066882'),
+  name: 'Barath',
+  age: 25,
+  details: {
+    position: 'data analyst',
+    salary: 70000
+  }
+}
+{
+  _id: ObjectId('680298a61e533a3236066883'),
+  name: 'Tamil',
+  age: 18,
+  details: {
+    position: 'Java developer',
+    salary: 80000
+  }
+}
+{
+  _id: ObjectId('680299481e533a3236066884'),
+  name: 'Elakia',
+  age: 38,
+  details: {
+    position: 'testing',
+    salary: 100000
+  }
+}
+db.HR.find();
+{
+  _id: ObjectId('68029e711e533a3236066889'),
+  name: 'Alice',
+  age: 25,
+  gender: 'female',
+  tags: [
+    'mongodb',
+    'nosql'
+  ],
+  comments: [
+    {
+      author: 'john',
+      text: 'good post',
+      score: 5
+    },
+    {
+      author: 'mary',
+      text: 'interesting',
+      score: 4
+    }
+  ]
+}
+{
+  _id: ObjectId('68029e711e533a323606688a'),
+  name: 'bob',
+  age: 30,
+  gender: 'male',
+  tags: [
+    'mongodb',
+    'database'
+  ],
+  comments: [
+    {
+      author: 'alice',
+      text: 'nice article',
+      score: 4
+    },
+    {
+      author: 'eve',
+      text: 'i disagree',
+      score: 2
+    }
+  ]
+}
+db.testing.find;
+[Function: find] AsyncFunction {
+  returnsPromise: true,
+  apiVersions: [ 1, Infinity ],
+  returnType: 'Cursor',
+  serverVersions: [ '0.0.0', '999.999.999' ],
+  topologies: [ 'ReplSet', 'Sharded', 'LoadBalanced', 'Standalone' ],
+  deprecated: false,
+  platforms: [ 'Compass', 'Browser', 'CLI' ],
+  isDirectShellCommand: false,
+  acceptsRawInput: false,
+  shellCommandCompleter: undefined,
+  help: [Function (anonymous)] Help
+}
+db.testing.find();
+{
+  _id: ObjectId('68029ae61e533a3236066885'),
+  name: 'Jack',
+  age: 26,
+  details: {
+    position: 'testing',
+    salary: 120000
+  }
+}
+{
+  _id: ObjectId('68029ae61e533a3236066886'),
+  name: 'lokesh',
+  age: 21,
+  details: {
+    position: 'testing',
+    salary: 10000
+  }
+}
+{
+  _id: ObjectId('68029bc51e533a3236066887'),
+  name: 'Aakash',
+  age: 20,
+  details: {
+    position: 'testing',
+    salary: 100000
+  }
+}
+{
+  _id: ObjectId('68029bc51e533a3236066888'),
+  name: 'Sunitha',
+  age: 21,
+  details: {
+    position: 'testing',
+    salary: 10000
+  }
+}
+db.developer.find(); 
+{
+  _id: ObjectId('6802984c1e533a3236066881'),
+  name: 'Aswath',
+  age: 21,
+  details: {
+    position: 'data analyst',
+    salary: 50000
+  }
+}
+{
+  _id: ObjectId('680298841e533a3236066882'),
+  name: 'Barath',
+  age: 25,
+  details: {
+    position: 'data analyst',
+    salary: 70000
+  }
+}
+{
+  _id: ObjectId('680298a61e533a3236066883'),
+  name: 'Tamil',
+  age: 18,
+  details: {
+    position: 'Java developer',
+    salary: 80000
+  }
+}
+{
+  _id: ObjectId('680299481e533a3236066884'),
+  name: 'Elakia',
+  age: 38,
+  details: {
+    position: 'testing',
+    salary: 100000
+  }
+}
+db.HR.insertOne({address:"Plot no-25,V.G.Prabhu Nagar,Chennai",customer_id:"680299481e533a3236066884"});
+{
+  acknowledged: true,
+  insertedId: ObjectId('68068cc041f756e549385458')
+}
+db.HR.insertOne({address:"Plot no-20,perumbakkam,Chennai",customer_id:"680299481e533a3236066883"});
+{
+  acknowledged: true,
+  insertedId: ObjectId('68068cf441f756e549385459')
+}
+db.HR.insertOne({address:"Plot no-10,Medavakkam,Chennai",customer_id:"680299481e533a3236066882"});
+{
+  acknowledged: true,
+  insertedId: ObjectId('68068d5a41f756e54938545a')
+}
+db.HR.insertOne({address:"Plot no-15,Gowrivakkam,Chennai",customer_id:"680299481e533a3236066881"});
+{
+  acknowledged: true,
+  insertedId: ObjectId('68068d9a41f756e54938545b')
+}
+db.testing.aggregate([{$lookup:{from:"HR",loaclfield:"_id",foreignfield:"customer_id",as:"customer_details"}}]);
+MongoServerError[FailedToParse]: unknown argument to $lookup: loaclfield
+db.testing.aggregate([{$lookup:{from:"HR",localfield:"_id",foreignfield:"customer_id",as:"customer_details"}}]);
+MongoServerError[FailedToParse]: unknown argument to $lookup: localfield
+db.testing.aggregate([{$lookup:{from:"HR",localfield:"_id",foreignfield:"customer_id",as:"customer_details"},}]);
+MongoServerError[FailedToParse]: unknown argument to $lookup: localfield
+db.testing.aggregate([{$lookup:{from:"HR",localfield:"_id",foreignfield:"customer_id",as:"customer_details"},},]);
+MongoServerError[FailedToParse]: unknown argument to $lookup: localfield
+db.testing.aggregate([{$lookup:{from:"HR",localfield:"_id",foreignfield:"customer_id",as:"customer_details"},},{limit:1}]);
+MongoServerError[Location40324]: Unrecognized pipeline stage name: 'limit'
+db.testing.aggregate([{$lookup:{from:"HR",localfield:"_id",foreignfield:"customer_id",as:"customer_details"},},{$limit:1}]);
+MongoServerError[FailedToParse]: unknown argument to $lookup: localfield
+db.testing.aggregate([{$lookup:{from:"HR",localField:"_id",foreignField:"customer_id",as:"customer_details"},},{$limit:1}]);
+{
+  _id: ObjectId('68029ae61e533a3236066885'),
+  name: 'Jack',
+  age: 26,
+  details: {
+    position: 'testing',
+    salary: 120000
+  },
+  customer_details: []
+}
+db.testing.aggregate([{$lookup:{from:"HR",localField:"_id",foreignField:"customer_id",as:"customer_details"}}]);
+{
+  _id: ObjectId('68029ae61e533a3236066885'),
+  name: 'Jack',
+  age: 26,
+  details: {
+    position: 'testing',
+    salary: 120000
+  },
+  customer_details: []
+}
+{
+  _id: ObjectId('68029ae61e533a3236066886'),
+  name: 'lokesh',
+  age: 21,
+  details: {
+    position: 'testing',
+    salary: 10000
+  },
+  customer_details: []
+}
+{
+  _id: ObjectId('68029bc51e533a3236066887'),
+  name: 'Aakash',
+  age: 20,
+  details: {
+    position: 'testing',
+    salary: 100000
+  },
+  customer_details: []
+}
+{
+  _id: ObjectId('68029bc51e533a3236066888'),
+  name: 'Sunitha',
+  age: 21,
+  details: {
+    position: 'testing',
+    salary: 10000
+  },
+  customer_details: []
+}
+rrec
+
